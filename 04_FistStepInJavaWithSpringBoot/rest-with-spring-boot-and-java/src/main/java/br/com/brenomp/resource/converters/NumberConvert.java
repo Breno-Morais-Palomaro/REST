@@ -1,6 +1,6 @@
-package br.com.brenomp.converters;
+package br.com.brenomp.resource.converters;
 
-public class convertToDouble {
+public class NumberConvert {
 
     public static double convertToDouble(String strNumber) {
 
