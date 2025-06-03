@@ -13,7 +13,7 @@ import br.com.brenomp.repositories.PersonRepository;
 @Service
 public class PersonServices {
 	
-	private Logger logger = Logger.getLogger(PersonServices.class.getName());
+	private final Logger logger = Logger.getLogger(PersonServices.class.getName());
 	
 	@Autowired
 	PersonRepository repository;
