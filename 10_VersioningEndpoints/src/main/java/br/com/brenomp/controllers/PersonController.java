@@ -2,6 +2,8 @@ package br.com.brenomp.controllers;
 
 import java.util.List;
 
+import br.com.brenomp.data.dto.v1.PersonDTO;
+import br.com.brenomp.data.dto.v2.PersonDTOV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,36 +16,41 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.brenomp.model.Person;
 import br.com.brenomp.services.PersonServices;
 
 @RestController
 @RequestMapping("/person")
 public class PersonController {
-	
+
 	@Autowired
 	private PersonServices service;
-	
+
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Person> findAll() {
+	public List<PersonDTO> findAll() {
 		return service.findAll();
 	}
-	
+
 	@GetMapping(value = "/{id}",
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Person findById(@PathVariable Long id) {
+	public PersonDTO findById(@PathVariable Long id) {
 		return service.findById(id);
 	}
-	
+
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Person create(@RequestBody Person person) {
+	public PersonDTO create(@RequestBody PersonDTO person) {
 		return service.create(person);
 	}
-	
+
+	@PostMapping(value = "/v2", consumes = MediaType.APPLICATION_JSON_VALUE,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public PersonDTOV2 create(@RequestBody PersonDTOV2 person) {
+		return service.createV2(person);
+	}
+
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Person update(@RequestBody Person person) {
+	public PersonDTO update(@RequestBody PersonDTO person) {
 		return service.update(person);
 	}
 	
